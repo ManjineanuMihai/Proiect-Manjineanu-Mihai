@@ -1,0 +1,57 @@
+﻿@using MPD_Manjineanu_Mihai.ViewModels
+@model IEnumerable<ActivityViewModel>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>Activity List</h1>
+
+<p>
+    <a asp-action="CreateActivityView">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Activity.ActivityName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activity.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activity.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.CategoryName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activity.ActivityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activity.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activity.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                </td>
+                <td>
+                    <a asp-action="LoadEditActivityView" asp-route-id="@item.Activity.ActivityID">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Activity.ActivityID">Delete</a>
+                </td>
+            </tr>
+        }
+        
+
+    </tbody>
+</table>
